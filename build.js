@@ -102,7 +102,9 @@ async function main() {
       const fid = crypto.createHash('sha1').update(src.url + '|' + ch).digest('hex').slice(0, 12);
       const keys = new Set([...(names.get(ch) || []), idName(ch)].map(n => key(n).key).filter(k => k.length >= 2));
       let used = false;
-      for (const k of keys) {
+      // each name, plus its "1" spelling ("ESPN" also answers "ESPN 1") - earlier guides win
+      const all = [...keys]; for (const k of keys) if (/[^0-9]$/.test(k)) all.push(k + '1');
+      for (const k of all) {
         if (!index[k]) { index[k] = fid; used = true; }
         if (src.region && !index[src.region + ':' + k]) { index[src.region + ':' + k] = fid; used = true; }
       }
