@@ -9,9 +9,15 @@ const fs = require('fs'), path = require('path'), zlib = require('zlib'), crypto
 const REGIONS = {
   us: 'us', usa: 'us', uk: 'uk', gb: 'uk', ca: 'ca', can: 'ca',
   ar: 'ar', arab: 'ar', arabic: 'ar', ae: 'ar', uae: 'ar', sa: 'ar', ksa: 'ar', eg: 'ar', qa: 'ar', kw: 'ar', lb: 'ar',
-  iq: 'ar', ma: 'ar', dz: 'ar', tn: 'ar', jo: 'ar', om: 'ar', bh: 'ar', sy: 'ar', ye: 'ar', ly: 'ar', sd: 'ar', ps: 'ar', mena: 'ar'
+  iq: 'ar', ma: 'ar', dz: 'ar', tn: 'ar', jo: 'ar', om: 'ar', bh: 'ar', sy: 'ar', ye: 'ar', ly: 'ar', sd: 'ar', ps: 'ar', mena: 'ar',
+  de: 'de', ger: 'de', deu: 'de', fr: 'fr', fra: 'fr', it: 'it', ita: 'it', es: 'es', esp: 'es', spa: 'es', nl: 'nl', ned: 'nl', hol: 'nl',
+  be: 'be', bel: 'be', pt: 'pt', por: 'pt', ch: 'ch', sui: 'ch', swi: 'ch', at: 'at', aut: 'at', ie: 'ie', irl: 'ie', pl: 'pl', pol: 'pl',
+  tr: 'tr', tur: 'tr', gr: 'gr', gre: 'gr', al: 'al', alb: 'al', ro: 'ro', rom: 'ro', se: 'se', swe: 'se', no: 'no', nor: 'no', dk: 'dk', den: 'dk',
+  fi: 'fi', fin: 'fi', cz: 'cz', sk: 'sk', hu: 'hu', hun: 'hu', yu: 'yu', ex: 'yu', exyu: 'yu', hr: 'yu', cro: 'yu', rs: 'yu', srb: 'yu', ba: 'yu', bih: 'yu',
+  bg: 'bg', bul: 'bg', ua: 'ua', ukr: 'ua', lt: 'lt', lv: 'lv', lu: 'lu', mt: 'mt', cy: 'cy', ru: 'ru', rus: 'ru',
+  in: 'in', ind: 'in', au: 'au', aus: 'au', nz: 'nz', za: 'za', br: 'br', bra: 'br', mx: 'mx', mex: 'mx', il: 'il', isr: 'il', jp: 'jp', ph: 'ph', my: 'my', sg: 'sg', hk: 'hk'
 };
-const PREFIX = new RegExp('^\\s*[\\[(|]?\\s*(' + Object.keys(REGIONS).concat(['en', 'fr', 'de', 'it', 'es', 'tr', 'in', 'pk', 'nl', 'pt', 'br', 'mx', 'au', 'ie', 'nz', 'za', 'vip']).join('|') + ')\\s*[\\])|:\\-–]+\\s*(?=\\S)');
+const PREFIX = new RegExp('^\\s*[\\[(|]?\\s*(' + Object.keys(REGIONS).concat(['en', 'pk', 'lat', 'vip']).join('|') + ')\\s*[\\])|:\\-–]+\\s*(?=\\S)');
 const QUAL = /\b(?:hd|fhd|uhd|sd|4k|8k|hevc|h ?265|h ?264|1080p?|720p?|2160p?|50 ?fps|60 ?fps|raw|backup|bk|vip|multi|audio|tv|live|hq|lq|low|high|digital|mono)\b/g;
 const CHANNEL = /\bchannel\b(?!\s*\d)/g;   // 'Fox News Channel' = 'Fox News', but 'Channel 4' stays
 
@@ -29,7 +35,7 @@ function key(raw) {
   s = s.replace(/^\s*new\s+(?=bein)/, '').replace(/\s(?:ar|en|fr)\s*$/, ' ')                 // "NEW beIN ... AR"
   s = s.replace(/\bsports?\s*(\d)/g, 'sport $1').replace(/([a-z\s-])0+(\d)/g, '$1$2')            // "SPORTS1" = "sport 1", "max 05" = "max 5"
   s = s.replace(/&/g, ' and ').replace(/\bsports\b/g, 'sport').replace(CHANNEL, ' ').replace(QUAL, ' ');
-  s = s.replace(/[^a-z0-9؀-ۿ]+/g, '');
+  s = s.replace(/[^a-z0-9\u0370-\u03ff\u0400-\u04ff\u0590-\u05ff\u0600-\u06ff]+/g, '');   // Latin, Greek, Cyrillic, Hebrew, Arabic
   return { key: s, region, shift };
 }
 /** XMLTV channel id "MBC.1.ae" / "en:.Rotana.Drama.ae" -> a name ("MBC 1") */
@@ -107,12 +113,19 @@ async function main() {
     console.log('  ' + names.size + ' channels, ' + here + ' written');
   }
   fs.writeFileSync(path.join(out, 'epg', 'index.json'), JSON.stringify({ at: now, n: index }));
+  const shards = {};
+  for (const [k, v] of Object.entries(index)) { const base = k.includes(':') ? k.slice(k.indexOf(':') + 1) : k; const id = shard(base); (shards[id] = shards[id] || {})[k] = v; }
+  fs.mkdirSync(path.join(out, 'epg', 'k'), { recursive: true });
+  for (const [id, n] of Object.entries(shards)) fs.writeFileSync(path.join(out, 'epg', 'k', id + '.json'), JSON.stringify({ at: now, n }));
+  console.log('name pieces: ' + Object.keys(shards).length);
   fs.writeFileSync(path.join(out, 'index.html'), '<!doctype html><meta charset="utf-8"><title>Dan\'s IPTV guide</title><p>TV guide data for the Dan\'s IPTV app, built ' +
     new Date(now * 1000).toISOString() + ' from free public XMLTV guides (epgshare01.online, epg.pw). ' + files + ' channels, ' + progs + ' programmes.</p>');
   fs.writeFileSync(path.join(out, '.nojekyll'), '');
   console.log('done: ' + files + ' channel files, ' + Object.keys(index).length + ' names, ' + progs + ' programmes');
 }
 if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
+/** which piece of the name list a key is in: its first 2 letters as hex ("mbc1" -> "6d-62") - same in Epg.kt */
+function shard(k) { return [...k.slice(0, 2)].map(c => c.codePointAt(0).toString(16)).join('-'); }
 /** other keys tried when the first has no guide: "espn1" -> "espn" */
-function alts(k) { const a = [k]; if (/[a-z؀-ۿ]1$/.test(k)) a.push(k.slice(0, -1)); return a; }
-module.exports = { key, idName, alts };
+function alts(k) { const a = [k]; if (/[a-z\u0370-\u03ff\u0400-\u04ff\u0590-\u05ff\u0600-\u06ff]1$/.test(k)) a.push(k.slice(0, -1)); return a; }
+module.exports = { key, idName, alts, shard };

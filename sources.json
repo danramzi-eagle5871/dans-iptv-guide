@@ -1,16 +1,257 @@
 {
-  "note": "Free public XMLTV guides. Earlier sources win when two have the same channel name. region = which provider prefix (US|, UK|, AR|...) prefers this source.",
-  "sources": [
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz", "region": "ar" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz", "region": "ar" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz", "region": "ar" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz", "region": "ar" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz", "region": "us" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_US_SPORTS1.xml.gz", "region": "us" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz", "region": "uk" },
-    { "url": "https://epgshare01.online/epgshare01/epg_ripper_CA2.xml.gz", "region": "ca" },
-    { "url": "https://epg.pw/xmltv/epg_US.xml.gz", "region": "us" },
-    { "url": "https://epg.pw/xmltv/epg_GB.xml.gz", "region": "uk" },
-    { "url": "https://epg.pw/xmltv/epg_CA.xml.gz", "region": "ca" }
-  ]
+ "note": "Free public XMLTV guides. Earlier sources win when two have the same channel name. region = which provider prefix (US|, UK|, DE|, AR|...) prefers this source.",
+ "sources": [
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz",
+   "region": "ar"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz",
+   "region": "ar"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz",
+   "region": "ar"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz",
+   "region": "ar"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz",
+   "region": "us"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_US_SPORTS1.xml.gz",
+   "region": "us"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz",
+   "region": "uk"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CA2.xml.gz",
+   "region": "ca"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_US.xml.gz",
+   "region": "us"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_GB.xml.gz",
+   "region": "uk"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_CA.xml.gz",
+   "region": "ca"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DE1.xml.gz",
+   "region": "de"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_FR1.xml.gz",
+   "region": "fr"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz",
+   "region": "it"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ES1.xml.gz",
+   "region": "es"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NL1.xml.gz",
+   "region": "nl"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BE2.xml.gz",
+   "region": "be"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PT1.xml.gz",
+   "region": "pt"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz",
+   "region": "ch"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AT1.xml.gz",
+   "region": "at"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IE1.xml.gz",
+   "region": "ie"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PL1.xml.gz",
+   "region": "pl"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz",
+   "region": "tr"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_TR3.xml.gz",
+   "region": "tr"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_GR1.xml.gz",
+   "region": "gr"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AL1.xml.gz",
+   "region": "al"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RO1.xml.gz",
+   "region": "ro"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RO2.xml.gz",
+   "region": "ro"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz",
+   "region": "se"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NO1.xml.gz",
+   "region": "no"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_DK1.xml.gz",
+   "region": "dk"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_FI1.xml.gz",
+   "region": "fi"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CZ1.xml.gz",
+   "region": "cz"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SK1.xml.gz",
+   "region": "sk"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HU1.xml.gz",
+   "region": "hu"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HR1.xml.gz",
+   "region": "yu"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_RS1.xml.gz",
+   "region": "yu"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BA1.xml.gz",
+   "region": "yu"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BG1.xml.gz",
+   "region": "bg"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_UA1.xml.gz",
+   "region": "ua"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LT1.xml.gz",
+   "region": "lt"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LV1.xml.gz",
+   "region": "lv"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_LU1.xml.gz",
+   "region": "lu"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MT1.xml.gz",
+   "region": "mt"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_CY1.xml.gz",
+   "region": "cy"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_DE.xml.gz",
+   "region": "de"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_FR.xml.gz",
+   "region": "fr"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_RU.xml.gz",
+   "region": "ru"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz",
+   "region": "in"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IN4.xml.gz",
+   "region": "in"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz",
+   "region": "au"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz",
+   "region": "nz"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz",
+   "region": "za"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz",
+   "region": "br"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MX1.xml.gz",
+   "region": "mx"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz",
+   "region": "il"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_JP1.xml.gz",
+   "region": "jp"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_PH2.xml.gz",
+   "region": "ph"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_MY1.xml.gz",
+   "region": "my"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_SG1.xml.gz",
+   "region": "sg"
+  },
+  {
+   "url": "https://epgshare01.online/epgshare01/epg_ripper_HK1.xml.gz",
+   "region": "hk"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_IN.xml.gz",
+   "region": "in"
+  },
+  {
+   "url": "https://epg.pw/xmltv/epg_AU.xml.gz",
+   "region": "au"
+  }
+ ]
 }
